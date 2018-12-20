@@ -1,0 +1,62 @@
+Difeerence between Freestyle project and pipeline 
+
+FreeStyle project we are configuring everything. we can't pipeline as
+whereas in Pipeline project we can create a jenkin file and write as many code to pipeline.
+build is automated.. if any changes in code it will pull and build will be automatically 
+
+
+Dockers
+=======
+
+Docker can support any application
+
+Docker is use for continuos deployement 
+
+jenkins file create a pipeline that will pull your code, perform test cases
+Dockerfile:
+==========
+Dockerfile will have the code which will create image 
+
+parent imgage is server image(which is there in docker hub)
+
+base image  is a template then you add new features and create new image 
+then this new image can be taken as base image next time.
+ 
+cmd -- first command when its container 
+
+
+docker build  (will craete an image)
+WORKDIR is like mkdir 
+COPY  everything from your repo to the image 
+
+
+docs.docker (refer) 
+
+sudo docker build -t mamta12/sampleapp .
+sudo docker run -p 8081:3000 -d mamta12/sampleapp
+sudo docker ps
+docker ps -a
+docker  exec -it 73f1291c2fe5 bash
+sudo docker ps
+docker stop <docker id> (to stop the docker container) 
+
+
+sudo docker build -t mamta12/springboot .
+sudo docker run -p 8081:9080 -d mamta12/springboot
+
+sudo docker run -p 8081:8080 -d devmabh/jenkins
+to chenge the settings
+=======
+inetwiz 
+
+GITHUB and Bigbucket are same just as repository 
+
+Jenkinsfile: is for pipeline 
+Dockerfile:to create an image 
+Kubernetes: is a plateform 
+   in Application.yml : deployment will deploy the applicaytion 
+                        service will expose to outer world
+
+
+
+The docker build command builds Docker images from a Dockerfile and a “context”. A build's context is the set of files located in the specified PATH or URL . The build process can refer to any of the files in the context. For example, your build can use a COPY instruction to reference a file in the context.

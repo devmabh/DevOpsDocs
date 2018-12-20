@@ -1,0 +1,49 @@
+Install COBOL
+=====================================
+sudo yum -y install libgmp3-dev libtool libdb-dev ncurses-dev libncurses-dev
+sudo yum install gmp gmp-devel libtool ncurses ncurses-devel ncurses-libs make
+sudo yum install libdbi libdbi-devel libtool-ltdl libtool-ltdl-devel db4 db4-devel
+
+583  sudo wget http://sourceforge.net/projects/open-cobol/files/gnu-cobol/3.0/gnucobol-3.0-rc1.tar.gz
+  584  clear
+  586  ls
+  587  sudo tar xvf gnucobol-3.0-rc1.tar.gz
+  588  clear
+  590  ls
+  591  cd gnucobol-3.0-rc1
+  593  sudo ./configure --without-db
+  594  sudo make
+  595  clear
+  596  sudo make check
+  597  sudo sudo make install
+  598  sudo make install
+  599  clear
+  600  sudo ldconfig
+  601  clear
+  602  cobc -V
+  603  vi HELLO.cbl
+                     IDENTIFICATION DIVISION.
+       PROGRAM-ID. HELLO.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       PROCEDURE DIVISION.
+
+           DISPLAY "HELLO THIS IS TESTING".
+           STOP RUN.
+
+  604 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  605 cobc -x HELLO.cbl
+  605 ./HELLO
+
+
+============================================
+Dockerfile 
+
+FROM node:carbon
+RUN apt-get update && apt-get install -y \
+  open-cobol \
+  gcc
+COPY  hello-world.cob /hello-world.cob
+RUN cobc -x -free -o hello-world hello-world.cob
+EXPOSE 3000
+CMD ["/hello-world"]

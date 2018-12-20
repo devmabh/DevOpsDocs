@@ -1,0 +1,36 @@
+FROM java:8
+MAINTAINER Mamta Bharti "mamta.bharti9039@gmail.com"
+
+EXPOSE 9080
+
+ADD target/books-example-1.0-SNAPSHOT.jar /application.jar
+
+CMD java -jar /application.jar
+
+===========================================================
+Dockerised 
+
+Persistance volume: container will have 10 tables \src\db due to use of persistance volume it will copy all tables to 
+\opt volume.. if system get crashed then again it will copy tables from \opt to \src\db 
+  
+===========================================================
+
+from jenkinsci/jenkins:lts
+ 
+USER root
+RUN apt-get update -qq \
+    && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common 
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+RUN add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+RUN apt-get update  -qq \
+    && apt-get install docker-ce=17.12.1~ce-0~debian -y
+RUN usermod -aG docker jenkins
+
+Note: Within Docker -- Jenkin image is created 
+
+Docker
+======
+1st handson: We have created Dockerfile 
